@@ -1,30 +1,19 @@
 import {
-  MuiThemeProvider,
   Theme,
   createStyles,
   makeStyles,
 } from '@material-ui/core/styles';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import { ReactComponent as Logo } from './logo.svg';
+import HorizontalTimelineContent from './components/HorizontalTimelineContent';
 import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
 
 // Load timeline data
 const data = require('./data.json');
@@ -115,37 +104,71 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const App: React.FC = () => {
-  const classes = useStyles();
+class App extends React.Component {
+  data: object[];
 
-
+  //classes = useStyles();
   
+  constructor(props: any) {
+    super(props);
+    this.data = []
+    this.state = { value: 0, previous: 0 };
+  }
+
+  componentWillMount() {
+    this.data = data.map((item: any) => {
+      return ({
+        date: item.date,
+        component: (
+          <div className='container' key={item.title}>
+            <h1>{ item.title}</h1>
+            <h2>{ `Type: ${item.type}` }</h2>
+            <hr />
+            <p>{ item.description}</p>
+            <hr />
+          </div>
+        )
+      });
+    });
+  }
+  
+  render() {
   return (
-    <div className={classes.root}>
+    <div
+    //className={this.classes.root}
+    >{/*
       <CssBaseline />
       <AppBar
         position="absolute"
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar 
+        //className={this.classes.toolbar}
+        >
           <Typography
             component="h1"
             variant="h6"
             color="inherit"
             noWrap
-            className={classes.title}
+            //className={this.classes.title}
           >
             COVID-19 Timeline
           </Typography>
         </Toolbar>
-      </AppBar>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          
+    </AppBar>*/}
+      <main 
+      //className={this.classes.content}
+      >
+        <div 
+        //className={this.classes.appBarSpacer} 
+        />
+        <Container maxWidth="lg" 
+        //className={this.classes.container}
+        >
+          <HorizontalTimelineContent content={this.data} />
         </Container>
       </main>
     </div>
-  );
+  )};
 };
 
 export default App;

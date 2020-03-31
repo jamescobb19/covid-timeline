@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  color: #383838 !important;
+  background-color: #f8f8f8 !important;
+  font-size: 0.8rem !important;
+}
+a {
+  text-decoration: none !important;
+}
+.dot-label {
+    color: #383838;
+}
+.resize-sensor {
+  opacity: 0;
+}

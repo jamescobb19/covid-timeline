@@ -17,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-horizontal-timeline": "^1.5.3",
     "react-scripts": "3.4.1",
+    "react-swipeable-views": "^0.13.9",
     "typescript": "^3.7.5"
   },
   "scripts": {
