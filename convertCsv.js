@@ -2,7 +2,7 @@ const fs = require('fs');
 const neatCsv = require('neat-csv')
 
 infile = 'data.csv'
-outfile = 'data.json'
+outfile = 'src/data.json'
 
 console.log(`Reading data from ${infile}...`)
 fs.readFile(infile, async (err, data) => {
@@ -15,7 +15,8 @@ fs.readFile(infile, async (err, data) => {
   const dataObject = await neatCsv(data);
   const mappedData = dataObject.map(item => {
     return {
-      date: item["Date"],
+      // Convert from dd/mm/yyyy to yyyy-mm-dd
+      date: item["Date"].split('/').reverse().join('-'),
       description: item["Event"],
       title: item["Short Title"],
       type: item["Type"],
